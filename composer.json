@@ -1,0 +1,28 @@
+{
+	"name": "pahanini/yii2-neat-cache",
+	"description": "A Yii2 components to prevent simultaneous updates (dog pile effect) during caching.",
+	"keywords": ["yii2", "cache", "doc pile", "simultaneous updates", "mutex"],
+	"homepage": "https://github.com/pahanini/yii2-neat-cache",
+	"type": "yii2-extension",
+	"minimum-stability": "dev",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Pavel Tetyaev",
+			"email": "pahanini@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"ext-curl": "*",
+		"yiisoft/yii2": "2.0.*"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "4.8.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"pahanini\\neatcache\\": "src"
+		}
+	}
+}
