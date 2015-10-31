@@ -32,9 +32,10 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
         // First start
         ob_start();
         $app = $this->getApp();
+        $app->cache->flush();
         $app->run();
         $result = ob_get_clean();
-        $this->assertEquals('body0', $result);
+        $this->assertEquals('body0', $result, "First run, put data into cache");
 
         // Make sure cache works
         ob_start();
@@ -42,13 +43,15 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
         $app = $this->getApp();
         $app->run();
         $result = ob_get_clean();
-        $this->assertEquals('body0', $result);
+        $app->mutex->releaseAll();
+        $this->assertEquals('body0', $result, "Second run, get data from cache");
 
         // Make sure dependency works
         ob_start();
         self::$tag = 1;
         $app = $this->getApp();
         $app->run();
+        $app->mutex->releaseAll();
         $result = ob_get_clean();
         $this->assertEquals('body1', $result);
 

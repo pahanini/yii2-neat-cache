@@ -20,7 +20,7 @@ class MutexDependency extends Dependency
     public $mutexID = 'mutex';
 
     /**
-     * @var
+     * @var string:array
      */
     public $tag;
 
@@ -43,14 +43,15 @@ class MutexDependency extends Dependency
     }
 
     /**
+     * @param \yii\caching\Cache $cache
      * @return bool
      * @throws InvalidConfigException
      */
-    public function getHasChanged()
+    public function getHasChanged($cache)
     {
-        if (!$this->tag || !is_string($this->tag)) {
+        if (!$this->tag) {
             throw new InvalidConfigException("Invalid tag attribute of mutex dependency");
         }
-        return $this->getMutex()->acquire($this->tag);
+        return $this->getMutex()->acquire($cache->buildKey($this->tag));
     }
 }

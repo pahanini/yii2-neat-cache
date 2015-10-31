@@ -8,7 +8,7 @@ return [
             'class' => 'yii\caching\MemCache',
         ],
         'mutex' => [
-            'class' => 'yii\mutex\FileMutex',
+            'class' => 'tests\components\TestMutex',
             'mutexPath' => '@tests/runtime'
         ]
     ]
