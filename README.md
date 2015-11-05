@@ -8,12 +8,10 @@
 
 ## About
 
-Improved Yii2 (http://www.yiiframework.com/doc-2.0/yii-filters-pagecache.html)[PageCache] 
+Improved Yii2 [PageCache](http://www.yiiframework.com/doc-2.0/yii-filters-pagecache.html)
 filter to prevent dog-pile effect in yii2 applications. Please see 
-(http://www.sobstel.org/blog/preventing-dogpile-effect/)[http://www.sobstel.org/blog/preventing-dogpile-effect/]
-for more information about dog-pile effect can be found  in 
-this (http://www.sobstel.org/blog/preventing-dogpile-effect/)[article]
-
+[http://www.sobstel.org/blog/preventing-dogpile-effect/](http://www.sobstel.org/blog/preventing-dogpile-effect/)
+for more information about dog-pile effect.
 
 ## Install
 
@@ -113,4 +111,4 @@ If you discover any security related issues, please email pahanini@gmail.com ins
 
 ## License
 
-The BSD License (MIT).
+The BSD License.
