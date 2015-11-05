@@ -65,7 +65,7 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
 
             // Parent starts after child and should get old data from cache, because child
             // is regenerating data right now
-            usleep(50);
+            usleep(1000);
             ob_start();
             $app = $this->getApp();
             $app->run();
@@ -83,8 +83,9 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
 
         } else {
 
+
             // Child starts immediately after forking and generates new data with 100 ms delay
-            self::$timeout = 100;
+            self::$timeout = 2000;
             $app->run();
         }
     }
