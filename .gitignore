@@ -1,4 +1,5 @@
 .idea
 vendor
 tests/runtime
+tests/config/main-local.php
 composer.lock
