@@ -19,7 +19,10 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer global require "phpunit/phpunit=4.8.6"
-  - cp tests/config/main-local.php.sample tests/config/main-local.php
+  - cp ~/tests/config/main-local.php.sample ~/tests/config/main-local.php
+  - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc
+  - echo "extension=memcache.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script:
   - phpunit
