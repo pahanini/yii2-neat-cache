@@ -11,12 +11,15 @@ matrix:
   allow_failures:
     - php: 7.0
 
+services:
+  - memcached
+
 install:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-dist --no-interaction
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer global require "phpunit/phpunit=4.8.6"
-  - cp $HOME/tests/config/main-local.php.sample $HOME/tests/config/main-local.php
+  - cp tests/config/main-local.php.sample tests/config/main-local.php
 
 script:
   - phpunit
