@@ -16,6 +16,7 @@ services:
 
 install:
   - travis_retry composer self-update
+  "fxp/composer-asset-plugin": "~1.0.0",
   - travis_retry composer install --prefer-dist --no-interaction
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer global require "phpunit/phpunit=4.8.6"
@@ -23,6 +24,10 @@ install:
   - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc
   - echo "extension=memcache.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+cache:
+  directories:
+  - vendor
 
 script:
   - phpunit
