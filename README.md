@@ -15,7 +15,7 @@ for more information about dog-pile effect.
 
 ## Install
 
-- Add `"pahanini/yii2-near-cache": "*"` to required section of your composer.json  
+- Add `"pahanini/yii2-neat-cache": "*"` to required section of your composer.json  
 
 
 ## Usage
