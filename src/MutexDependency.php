@@ -3,8 +3,6 @@
 namespace pahanini\neatcache;
 
 use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
-use yii\caching\Cache;
 use yii\di\Instance;
 use yii\mutex\Mutex;
 use \yii\caching\Dependency;
