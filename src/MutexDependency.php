@@ -54,9 +54,8 @@ class MutexDependency extends Dependency
         if (!$this->tag) {
             throw new InvalidConfigException("Invalid tag attribute of mutex dependency");
         }
-        if (!$cache instanceof Cache) {
-            throw new InvalidParamException("Unexpected ". get_class($cache) . " param type");
-        }
-        return $this->getMutex()->acquire($cache->buildKey($this->tag));
+        // We do not use $cache->buildKey method because travis-ci fails in this case with strange error
+        // yii\base\UnknownMethodException: Calling unknown method: yii\caching\MemCache::buildKey()
+        return $this->getMutex()->acquire(md5(json_encode($this->tag)));
     }
 }
