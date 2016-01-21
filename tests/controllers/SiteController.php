@@ -24,8 +24,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if (NeatCacheTest::$timeout) {
-            usleep(NeatCacheTest::$timeout);
+        if (NeatCacheTest::$mutexState === true) {
+            // @todo create better way to wait
+            sleep(1);
         }
         return "body" . NeatCacheTest::$body;
     }

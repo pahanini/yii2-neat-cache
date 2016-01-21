@@ -6,7 +6,7 @@ class TestMutex extends \yii\mutex\FileMutex
 {
     private $_names = [];
 
-    public function acquireLock($name, $timeout = 0)
+    protected function acquireLock($name, $timeout = 0)
     {
         $result = parent::acquireLock($name, $timeout);
         if ($result) {
@@ -21,5 +21,10 @@ class TestMutex extends \yii\mutex\FileMutex
             $this->release($name);
         }
         $this->_names = [];
+    }
+
+    public function isAcquired($name)
+    {
+        return isset($this->_names[$name]);
     }
 }

@@ -11,9 +11,20 @@ use yii\helpers\ArrayHelper;
  */
 class NeatCacheTest extends \PHPUnit_Framework_TestCase
 {
-    public static $tag = 0;
+    /**
+     * @var int Controller uses this value to generate page
+     */
     public static $body = 0;
-    public static $timeout = 0;
+
+    /**
+     * @var int If this tag is changed then page cache should be invalidated
+     */
+    public static $tag = 0;
+
+    /**
+     * @var int 
+     */
+    public static $mutexState;
 
     /**
      * @return \yii\web\Application
@@ -61,33 +72,16 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
         self::$tag = 2;
         self::$body = 2;
 
-        if ($pid) {
+        ob_start();
+        $app = $this->getApp();
+        self::$mutexState = $app->mutex->acquire('test');
+        $app->run();
+        $result = ob_get_clean();
 
-            // Parent starts after child and should get old data from cache, because child
-            // is regenerating data right now
-            usleep(1000);
-            ob_start();
-            $app = $this->getApp();
-            $app->run();
-            $result = ob_get_clean();
-            $this->assertEquals('body1', $result, "Both processes have started cache rebuild ;-(");
-
-            // Wait for child ends and now parent should get new data
-            pcntl_wait ($status);
-            ob_start();
-            $app = $this->getApp();
-            $app->run();
-            $result = ob_get_clean();
+        if (self::$mutexState) {
             $this->assertEquals('body2', $result);
-
-
         } else {
-
-
-            // Child starts immediately after forking and generates new data with 100 ms delay
-            self::$timeout = 2000;
-            $app->run();
+            $this->assertEquals('body1', $result);
         }
     }
-
 }
