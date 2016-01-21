@@ -6,8 +6,21 @@ use Yii;
 
 class PageCache extends \yii\filters\PageCache
 {
+    /**
+     * Mutex dependency
+     *
+     * @var array
+     */
+    public $mutexDependency = [
+        'class' => '\pahanini\neatcache\MutexDependency',
+    ];
+
+    /**
+     * @inheritdoc
+     */
     public function beforeAction($action)
     {
+
         if (!$this->enabled) {
             return true;
         }
@@ -24,15 +37,15 @@ class PageCache extends \yii\filters\PageCache
                     $tag[] = $factor;
                 }
             }
+
+            $this->mutexDependency['tag'] = $tag;
+
             $this->dependency = [
                 'class' => '\yii\caching\ChainedDependency',
                 'dependOnAll' => false,
                 'dependencies' => [
                     $oldDependency,
-                    Yii::createObject([
-                        'class' => '\pahanini\neatcache\MutexDependency',
-                        'tag' => $tag,
-                    ]),
+                    Yii::createObject($this->mutexDependency),
                 ]
             ];
         }
