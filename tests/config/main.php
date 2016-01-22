@@ -5,7 +5,7 @@ return [
     'basePath' => dirname(__DIR__),
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\MemCache',
+            'class' => 'yii\caching\FileCache',
         ],
         'mutex' => [
             'class' => 'tests\components\TestMutex',

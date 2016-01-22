@@ -22,7 +22,7 @@ class NeatCacheTest extends \PHPUnit_Framework_TestCase
     public static $tag = 0;
 
     /**
-     * @var int 
+     * @var int
      */
     public static $mutexState;
 
