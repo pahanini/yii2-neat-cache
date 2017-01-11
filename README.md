@@ -34,7 +34,7 @@ There are two main components MutexDependency and PageCache. Both require mutex 
 ### MutexDependency 
 
 For example you need prevent simultaneous calls of heavy function. Even if the function result is cached
-at the moment cache expired there is a chance what two apache workers will call this function twice or 
+at the moment cache expired there is a chance that two apache workers will call this function twice or 
 even worse. 
 
 First step to prevent this behavior is to prepare chained dependency with dependOnAll property set to false. 
