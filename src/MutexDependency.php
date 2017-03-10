@@ -47,7 +47,7 @@ class MutexDependency extends Dependency
      * @return bool
      * @throws InvalidConfigException
      */
-    public function getHasChanged($cache)
+    public function isChanged($cache)
     {
         if (!$this->tag) {
             throw new InvalidConfigException("Invalid tag attribute of mutex dependency");
