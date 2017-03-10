@@ -43,6 +43,15 @@ class MutexDependency extends Dependency
     }
 
     /**
+     * Returns a value indicating whether the dependency has changed.
+     * @deprecated Use [[isChanged()]] instead.
+     */
+    public function getHasChanged($cache)
+    {
+        return $this->isChanged($cache);
+    }
+
+    /**
      * @param \yii\caching\Cache $cache
      * @return bool
      * @throws InvalidConfigException
